@@ -60,32 +60,32 @@ class _PopularLabTestsState extends State<PopularLabTests> {
               Row(
                 children: [
                   PopularLabTestCard(
-                    TestName: "Thyroid Profile",
-                    TestQuantity: 3,
-                    TestActualPrice: 1400,
-                    TestDiscountedPrice: 999,
+                    testName: "Thyroid Profile",
+                    testQuantity: 3,
+                    testActualPrice: 1400,
+                    testDiscountedPrice: 999,
                   ),
                   PopularLabTestCard(
-                    TestName: "Iron Study Test",
-                    TestQuantity: 4,
-                    TestActualPrice: 1000,
-                    TestDiscountedPrice: 599,
+                    testName: "Iron Study Test",
+                    testQuantity: 4,
+                    testActualPrice: 1000,
+                    testDiscountedPrice: 599,
                   ),
                 ],
               ),
               Row(
                 children: [
                   PopularLabTestCard(
-                    TestName: "Blood Test",
-                    TestQuantity: 5,
-                    TestActualPrice: 2000,
-                    TestDiscountedPrice: 1499,
+                    testName: "Blood Test",
+                    testQuantity: 5,
+                    testActualPrice: 2000,
+                    testDiscountedPrice: 1499,
                   ),
                   PopularLabTestCard(
-                    TestName: "Blood Test",
-                    TestQuantity: 5,
-                    TestActualPrice: 2000,
-                    TestDiscountedPrice: 1499,
+                    testName: "Blood Test",
+                    testQuantity: 5,
+                    testActualPrice: 2000,
+                    testDiscountedPrice: 1499,
                   ),
                 ],
               ),

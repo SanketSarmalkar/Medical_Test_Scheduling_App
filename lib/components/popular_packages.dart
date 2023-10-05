@@ -15,10 +15,10 @@ class _PopularPackagesState extends State<PopularPackages> {
       children: [
         Padding(
           padding: EdgeInsets.only(
-            bottom: Theme.of(context).textTheme.titleSmall!.fontSize! * 1,
+            bottom: Theme.of(context).textTheme.titleSmall!.fontSize! * 0.6,
             left: Theme.of(context).textTheme.titleSmall!.fontSize! * 1,
             right: Theme.of(context).textTheme.titleSmall!.fontSize! * 1,
-            top: Theme.of(context).textTheme.titleSmall!.fontSize! * 1,
+            top: Theme.of(context).textTheme.titleSmall!.fontSize! * 0.3,
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

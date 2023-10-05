@@ -18,6 +18,7 @@ class HomePage extends StatelessWidget {
             onPressed: () {},
           ),
         ],
+        shadowColor: Colors.transparent,
       ),
       body: ListView(
         children: const [

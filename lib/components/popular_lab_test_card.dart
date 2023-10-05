@@ -1,18 +1,16 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart ';
 
 class PopularLabTestCard extends StatefulWidget {
-  final String TestName;
-  final int TestQuantity;
-  final int TestActualPrice;
-  final int TestDiscountedPrice;
+  final String testName;
+  final int testQuantity;
+  final int testActualPrice;
+  final int testDiscountedPrice;
   const PopularLabTestCard({
     super.key,
-    required this.TestName,
-    required this.TestQuantity,
-    required this.TestActualPrice,
-    required this.TestDiscountedPrice,
+    required this.testName,
+    required this.testQuantity,
+    required this.testActualPrice,
+    required this.testDiscountedPrice,
   });
 
   @override
@@ -45,7 +43,7 @@ class _PopularLabTestCardState extends State<PopularLabTestCard> {
               color: const Color(0xff10217D).withOpacity(0.8),
             ),
             child: Text(
-              widget.TestName,
+              widget.testName,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: Theme.of(context).textTheme.titleSmall!.fontSize,
@@ -83,7 +81,7 @@ class _PopularLabTestCardState extends State<PopularLabTestCard> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Includes ${widget.TestQuantity} tests"),
+                        Text("Includes ${widget.testQuantity} tests"),
                         Image.asset(
                           "assets/images/popularLabTestLogo.png",
                           scale: 0.8,
@@ -115,7 +113,7 @@ class _PopularLabTestCardState extends State<PopularLabTestCard> {
                               Theme.of(context).textTheme.bodyLarge!.fontSize! /
                                   2),
                       child: Text(
-                        "₹ ${widget.TestDiscountedPrice}",
+                        "₹ ${widget.testDiscountedPrice}",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: const Color(0xff10217D),
@@ -125,7 +123,7 @@ class _PopularLabTestCardState extends State<PopularLabTestCard> {
                       ),
                     ),
                     Text(
-                      "₹ ${widget.TestActualPrice}",
+                      "₹ ${widget.testActualPrice}",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         decoration: TextDecoration.lineThrough,
@@ -136,7 +134,6 @@ class _PopularLabTestCardState extends State<PopularLabTestCard> {
                   ]),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    //crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       MaterialButton(
                         color: const Color(0xff10217D),
@@ -150,7 +147,7 @@ class _PopularLabTestCardState extends State<PopularLabTestCard> {
                             Theme.of(context).textTheme.bodyLarge!.fontSize! *
                                 10,
                         onPressed: () {},
-                        child: Text("Add to Cart"),
+                        child: const Text("Add to Cart"),
                       ),
                       MaterialButton(
                         textColor: const Color(0xff10217D),
@@ -158,15 +155,15 @@ class _PopularLabTestCardState extends State<PopularLabTestCard> {
                           borderRadius: BorderRadius.circular(
                               Theme.of(context).textTheme.bodyLarge!.fontSize! /
                                   2),
-                          side: BorderSide(
-                            color: const Color(0xff10217D),
+                          side: const BorderSide(
+                            color: Color(0xff10217D),
                           ),
                         ),
                         minWidth:
                             Theme.of(context).textTheme.bodyLarge!.fontSize! *
                                 10,
                         onPressed: () {},
-                        child: Text("View Details"),
+                        child: const Text("View Details"),
                       ),
                     ],
                   ),

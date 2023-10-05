@@ -20,12 +20,28 @@ class PopularPackageCard extends StatefulWidget {
 }
 
 class _PopularPackageCardState extends State<PopularPackageCard> {
+  final TextStyle _textStyleBulletPoints = const TextStyle(
+    color: Color(0xff6C87AE),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(16),
-      padding: EdgeInsets.all(16),
-      decoration: BoxDecoration(border: Border.all()),
+      margin: EdgeInsets.only(
+        top: MediaQuery.of(context).size.width * 0.02,
+        bottom: MediaQuery.of(context).size.width * 0.02,
+        left: MediaQuery.of(context).size.width * 0.1,
+        right: MediaQuery.of(context).size.width * 0.1,
+      ),
+      padding: EdgeInsets.all(
+        MediaQuery.of(context).size.width * 0.05,
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: const Color(0xff10217D).withOpacity(0.3),
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -48,7 +64,10 @@ class _PopularPackageCardState extends State<PopularPackageCard> {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.only(
+              top: MediaQuery.of(context).size.width * 0.02,
+              bottom: MediaQuery.of(context).size.width * 0.025,
+            ),
             child: Text(
               widget.packageName,
               style: Theme.of(context).textTheme.titleLarge,
@@ -56,24 +75,47 @@ class _PopularPackageCardState extends State<PopularPackageCard> {
             ),
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Includes ${widget.packageQuantity} tests"),
-              Text(".  ${widget.firstTestName}"),
-              Text(".  ${widget.secondTestName}"),
               Text(
+                "Includes ${widget.packageQuantity} tests",
+                style: _textStyleBulletPoints,
+              ),
+              Text(
+                "\u2022 ${widget.firstTestName}",
+                style: _textStyleBulletPoints,
+              ),
+              Text(
+                "\u2022 ${widget.secondTestName}",
+                style: _textStyleBulletPoints,
+              ),
+              const Text(
                 "View More",
                 style: TextStyle(
                   decoration: TextDecoration.underline,
+                  color: Color(0xff6C87AE),
                 ),
               )
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("${widget.packageActualPrice}"),
+              Text("\u{20B9} ${widget.packageActualPrice}/-",
+                  style: TextStyle(
+                    fontSize:
+                        Theme.of(context).textTheme.headlineSmall!.fontSize,
+                    color: const Color(0xff1BA9B5),
+                    fontWeight: FontWeight.bold,
+                  )),
               MaterialButton(
                 onPressed: () {},
-                child: Text("Add to card"),
+                minWidth: 125,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                  side: const BorderSide(color: Color(0xff10217D)),
+                ),
+                child: const Text("Add to card"),
               )
             ],
           )
