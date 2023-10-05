@@ -24,9 +24,14 @@ class _PopularLabTestCardState extends State<PopularLabTestCard> {
   Widget build(BuildContext context) {
     return Expanded(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            margin: EdgeInsets.all(10),
+            margin: EdgeInsets.only(
+              top: Theme.of(context).textTheme.titleSmall!.fontSize! / 2,
+              right: Theme.of(context).textTheme.titleSmall!.fontSize! / 2,
+              left: Theme.of(context).textTheme.titleSmall!.fontSize! / 2,
+            ),
             padding: EdgeInsets.only(
               top: Theme.of(context).textTheme.titleSmall!.fontSize!,
               bottom: Theme.of(context).textTheme.titleSmall!.fontSize!,
@@ -50,9 +55,24 @@ class _PopularLabTestCardState extends State<PopularLabTestCard> {
             ),
           ),
           Container(
+              margin: EdgeInsets.only(
+                bottom: Theme.of(context).textTheme.titleSmall!.fontSize! / 2,
+                right: Theme.of(context).textTheme.titleSmall!.fontSize! / 2,
+                left: Theme.of(context).textTheme.titleSmall!.fontSize! / 2,
+              ),
               padding: EdgeInsets.only(
-                left: Theme.of(context).textTheme.bodyLarge!.fontSize! * 1.5,
-                right: Theme.of(context).textTheme.bodyLarge!.fontSize! * 1.5,
+                left: Theme.of(context).textTheme.bodyLarge!.fontSize! * 1.2,
+                right: Theme.of(context).textTheme.bodyLarge!.fontSize! * 1.2,
+                top: Theme.of(context).textTheme.bodyLarge!.fontSize! / 2,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(5),
+                  bottomRight: Radius.circular(5),
+                ),
+                border: Border.all(
+                  color: const Color(0xff10217D).withOpacity(0.2),
+                ),
               ),
               child: Column(
                 children: [
@@ -71,17 +91,27 @@ class _PopularLabTestCardState extends State<PopularLabTestCard> {
                       ],
                     ),
                   ),
-                  Text(
-                    "Get reports in 24 hours",
-                    style: TextStyle(
-                      fontSize:
-                          Theme.of(context).textTheme.labelSmall!.fontSize,
+                  Container(
+                    padding: EdgeInsets.only(
+                        bottom:
+                            Theme.of(context).textTheme.bodyLarge!.fontSize! /
+                                2),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Get reports in 24 hours",
+                      style: TextStyle(
+                        fontSize:
+                            Theme.of(context).textTheme.labelSmall!.fontSize,
+                      ),
                     ),
                   ),
                   Row(children: [
                     Padding(
                       padding: EdgeInsets.only(
                           right:
+                              Theme.of(context).textTheme.bodyLarge!.fontSize! /
+                                  2,
+                          bottom:
                               Theme.of(context).textTheme.bodyLarge!.fontSize! /
                                   2),
                       child: Text(
@@ -104,14 +134,42 @@ class _PopularLabTestCardState extends State<PopularLabTestCard> {
                       ),
                     ),
                   ]),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text("Add to Cart"),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    //crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      MaterialButton(
+                        color: const Color(0xff10217D),
+                        textColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              Theme.of(context).textTheme.bodyLarge!.fontSize! /
+                                  2),
+                        ),
+                        minWidth:
+                            Theme.of(context).textTheme.bodyLarge!.fontSize! *
+                                10,
+                        onPressed: () {},
+                        child: Text("Add to Cart"),
+                      ),
+                      MaterialButton(
+                        textColor: const Color(0xff10217D),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              Theme.of(context).textTheme.bodyLarge!.fontSize! /
+                                  2),
+                          side: BorderSide(
+                            color: const Color(0xff10217D),
+                          ),
+                        ),
+                        minWidth:
+                            Theme.of(context).textTheme.bodyLarge!.fontSize! *
+                                10,
+                        onPressed: () {},
+                        child: Text("View Details"),
+                      ),
+                    ],
                   ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text("View Details"),
-                  )
                 ],
               )),
         ],
