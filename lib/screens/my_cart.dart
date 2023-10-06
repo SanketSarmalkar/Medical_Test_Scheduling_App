@@ -4,6 +4,7 @@ import 'package:health_checkup_store/components/calender_widget.dart';
 import 'package:health_checkup_store/components/cart_orders.dart';
 import 'package:health_checkup_store/controllers/booking_appointment_controller.dart';
 import 'package:health_checkup_store/controllers/my_cart_controller.dart';
+import 'package:health_checkup_store/screens/successful_booking.dart';
 
 class MyCartPage extends StatefulWidget {
   const MyCartPage({super.key});
@@ -24,6 +25,7 @@ class _MyCartPageState extends State<MyCartPage> {
       fontWeight: FontWeight.bold,
       color: Colors.black.withOpacity(0.5),
     );
+    double fontSize_1 = Theme.of(context).textTheme.bodyLarge!.fontSize! * 0.5;
     return Scaffold(
         appBar: AppBar(
           title: Text("My Cart", style: Theme.of(context).textTheme.titleLarge),
@@ -33,18 +35,23 @@ class _MyCartPageState extends State<MyCartPage> {
         ),
         body: Padding(
           padding: EdgeInsets.only(
-            left: Theme.of(context).textTheme.bodyLarge!.fontSize! * 0.5,
-            right: Theme.of(context).textTheme.bodyLarge!.fontSize! * 0.5,
+            left: fontSize_1,
+            right: fontSize_1,
           ),
           child: ListView(
             //crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
-                "Order Review",
-                style: TextStyle(
-                  fontSize: Theme.of(context).textTheme.titleLarge!.fontSize,
-                  fontWeight: FontWeight.bold,
-                  color: const Color(0xff10217D),
+              Padding(
+                padding: EdgeInsets.all(
+                  fontSize_1,
+                ),
+                child: Text(
+                  "Order Review",
+                  style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.titleLarge!.fontSize,
+                    fontWeight: FontWeight.bold,
+                    color: const Color(0xff10217D),
+                  ),
                 ),
               ),
               const CartOrders(),
@@ -58,8 +65,7 @@ class _MyCartPageState extends State<MyCartPage> {
                         ));
                   },
                   child: Container(
-                    margin: EdgeInsets.all(
-                        Theme.of(context).textTheme.bodyLarge!.fontSize! * 0.5),
+                    margin: EdgeInsets.all(fontSize_1),
                     padding: EdgeInsets.only(
                       top: Theme.of(context).textTheme.bodyLarge!.fontSize! *
                           1.6,
@@ -89,9 +95,7 @@ class _MyCartPageState extends State<MyCartPage> {
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.7,
-                          padding: EdgeInsets.all(
-                              Theme.of(context).textTheme.bodyLarge!.fontSize! *
-                                  0.5),
+                          padding: EdgeInsets.all(fontSize_1),
                           decoration: BoxDecoration(
                             border: Border.all(
                               color: const Color(0xff10217D).withOpacity(0.2),
@@ -132,16 +136,7 @@ class _MyCartPageState extends State<MyCartPage> {
                       children: [
                         Padding(
                           padding: EdgeInsets.only(
-                              top: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .fontSize! *
-                                  0.5,
-                              bottom: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .fontSize! *
-                                  0.5),
+                              top: fontSize_1, bottom: fontSize_1),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -156,16 +151,9 @@ class _MyCartPageState extends State<MyCartPage> {
                         ),
                         Padding(
                           padding: EdgeInsets.only(
-                              top: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .fontSize! *
-                                  0.5,
-                              bottom: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge!
-                                      .fontSize! *
-                                  0.5),
+                            top: fontSize_1,
+                            bottom: fontSize_1,
+                          ),
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -245,14 +233,12 @@ class _MyCartPageState extends State<MyCartPage> {
               ),
               Container(
                 margin: EdgeInsets.only(
-                  top: Theme.of(context).textTheme.bodyLarge!.fontSize! * 0.5,
-                  bottom:
-                      Theme.of(context).textTheme.bodyLarge!.fontSize! * 0.5,
+                  top: fontSize_1,
+                  bottom: fontSize_1,
                   left: Theme.of(context).textTheme.bodyLarge!.fontSize! * 0.1,
                   right: Theme.of(context).textTheme.bodyLarge!.fontSize! * 0.1,
                 ),
-                padding: EdgeInsets.all(
-                    Theme.of(context).textTheme.bodyLarge!.fontSize! * 0.5),
+                padding: EdgeInsets.all(fontSize_1),
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: const Color(0xff10217D).withOpacity(0.1),
@@ -289,21 +275,53 @@ class _MyCartPageState extends State<MyCartPage> {
                   ],
                 ),
               ),
-              MaterialButton(
-                onPressed: () {},
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: MaterialButton(
+                  onPressed: () {
+                    if (myCartController.myCartList.isNotEmpty &&
+                        bookingAppointmentController.selectedDate.value != "" &&
+                        bookingAppointmentController.selectedTime.value != "") {
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SuccessfulBooking(
+                              date: bookingAppointmentController
+                                  .getSelectedDate(),
+                              time: bookingAppointmentController
+                                  .getSelectedTime(),
+                            ),
+                          ));
+
+                      bookingAppointmentController.bookAppointment(
+                        myCartController.myCartList,
+                        myCartController.totalPrice,
+                      );
+                    } else {
+                      Get.snackbar(
+                        "Error Encountered",
+                        "Fill all the Fields",
+                        snackPosition: SnackPosition.BOTTOM,
+                        duration: const Duration(seconds: 5),
+                        colorText: Colors.red,
+                      );
+                    }
+                  },
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  minWidth: MediaQuery.of(context).size.width * 0.6,
+                  height: MediaQuery.of(context).size.height * 0.07,
+                  color: const Color(0xff10217D),
+                  child: Text("Schedule Appointment",
+                      style: TextStyle(
+                        fontSize:
+                            Theme.of(context).textTheme.titleMedium!.fontSize,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      )),
                 ),
-                minWidth: MediaQuery.of(context).size.width * 0.8,
-                height: MediaQuery.of(context).size.height * 0.075,
-                color: const Color(0xff10217D),
-                child: Text("Schedule Appointment",
-                    style: TextStyle(
-                      fontSize:
-                          Theme.of(context).textTheme.titleSmall!.fontSize,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    )),
               ),
             ],
           ),

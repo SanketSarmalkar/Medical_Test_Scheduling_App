@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:health_checkup_store/models/booked_appointment.dart';
+import 'package:health_checkup_store/adapters/booked_appointment_model_1.dart';
 import 'package:health_checkup_store/models/popular_lab_test_model.dart';
 
 class BookingAppointmentController extends GetxController {
@@ -10,6 +10,8 @@ class BookingAppointmentController extends GetxController {
 
   // List<PopularLabTestModel> get myCartList => _myCartList.toList();
   // double get totalPrice => _totalPrice.value;
+
+  //BookedAppointmentController bookedAppointmentController = Get.put(BookedAppointmentController());
 
   void setSelectedDate(String date) {
     selectedDate.value = date;
@@ -23,14 +25,15 @@ class BookingAppointmentController extends GetxController {
     List<PopularLabTestModel> myCartList,
     double totalPrice,
   ) {
+    // ignore: unused_local_variable
     BookedAppointmentModel bookedAppointmentModel = BookedAppointmentModel(
       appointmentDate: DateTime.parse(selectedDate.value),
       appointmentTime: selectedTime.value,
       tests: myCartList,
       totalPrice: totalPrice,
     );
-    clearCartDetails();
-    print(bookedAppointmentModel.appointmentDate);
+    //bookedAppointmentController.addTest(bookedAppointmentModel);
+    //print(bookedAppointmentModel.appointmentDate);
   }
 
   void clearCartDetails() {

@@ -27,4 +27,11 @@ class MyCartController extends GetxController {
     _totalDiscount.value -=
         myCartModel.testActualPrice - myCartModel.testDiscountedPrice;
   }
+
+  void clearCartDetails() {
+    _myCartList.clear();
+    _totalPrice.value = 0.0;
+    _totalMRP.value = 0.0;
+    _totalDiscount.value = 0.0;
+  }
 }

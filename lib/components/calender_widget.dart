@@ -31,93 +31,119 @@ class _CalenderWidgetState extends State<CalenderWidget> {
         iconTheme: const IconThemeData(color: Colors.black),
         shadowColor: Colors.transparent,
       ),
-      body: Column(children: [
-        Text("Select Date",
-            style: TextStyle(
-              fontSize: Theme.of(context).textTheme.titleSmall!.fontSize,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            )),
-        Expanded(
-          child: CalendarDatePicker(
+      body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(
+                Theme.of(context).textTheme.titleSmall!.fontSize! * 0.5,
+              ),
+              child: Text("Select Date",
+                  style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.titleSmall!.fontSize,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  )),
+            ),
+            CalendarDatePicker(
               initialDate: DateTime.now(),
               firstDate: DateTime.now(),
               lastDate: DateTime(2025),
               onDateChanged: (value) {
                 bookingAppointmentController.setSelectedDate(value.toString());
-              }),
-        ),
-        Text("Select Time",
-            style: TextStyle(
-              fontSize: Theme.of(context).textTheme.titleSmall!.fontSize,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            )),
-        SizedBox(
-          height: 200,
-          child: ListView.builder(
-              itemCount: schedulingTimeData.TimeSlot.length,
-              itemBuilder: (context, index) {
-                return Row(
-                  children: List.generate(3, (colIndex) {
-                    final slotIndex = index * 3 + colIndex;
-                    if (slotIndex < schedulingTimeData.TimeSlot.length) {
-                      return Expanded(
-                        child: Obx(
-                          () => MaterialButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              side: const BorderSide(
-                                color: Color(0xff10217D),
+              },
+            ),
+            Padding(
+              padding: EdgeInsets.all(
+                Theme.of(context).textTheme.titleSmall!.fontSize! * 0.5,
+              ),
+              child: Text("Select Time",
+                  style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.titleSmall!.fontSize,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  )),
+            ),
+            SizedBox(
+              height: 260,
+              child: ListView.builder(
+                  itemCount: schedulingTimeData.TimeSlot.length,
+                  itemBuilder: (context, index) {
+                    return Row(
+                      children: List.generate(3, (colIndex) {
+                        final slotIndex = index * 3 + colIndex;
+                        if (slotIndex < schedulingTimeData.TimeSlot.length) {
+                          return Expanded(
+                            child: Obx(
+                              () => Padding(
+                                padding: EdgeInsets.all(
+                                  Theme.of(context)
+                                          .textTheme
+                                          .titleSmall!
+                                          .fontSize! *
+                                      0.5,
+                                ),
+                                child: MaterialButton(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    side: const BorderSide(
+                                      color: Color(0xff10217D),
+                                      width: 3,
+                                    ),
+                                  ),
+                                  color: bookingAppointmentController
+                                              .selectedTime.value ==
+                                          schedulingTimeData.TimeSlot[slotIndex]
+                                      ? const Color(0xff10217D)
+                                      : Colors.white,
+                                  child: Text(
+                                      schedulingTimeData.TimeSlot[slotIndex]),
+                                  onPressed: () {
+                                    bookingAppointmentController
+                                        .setSelectedTime(schedulingTimeData
+                                            .TimeSlot[slotIndex]);
+                                  },
+                                ),
                               ),
                             ),
-                            color: bookingAppointmentController
-                                        .selectedTime.value ==
-                                    schedulingTimeData.TimeSlot[slotIndex]
-                                ? const Color(0xff10217D)
-                                : Colors.white,
-                            child: Text(schedulingTimeData.TimeSlot[slotIndex]),
-                            onPressed: () {
-                              bookingAppointmentController.setSelectedTime(
-                                  schedulingTimeData.TimeSlot[slotIndex]);
-                            },
-                          ),
-                        ),
-                      );
-                    } else {
-                      // Placeholder for empty slots if the total slots are not a multiple of 3
-                      return Expanded(child: Container());
-                    }
+                          );
+                        } else {
+                          return Expanded(child: Container());
+                        }
+                      }),
+                    );
                   }),
-                );
-              }),
-        ),
-        // Expanded(
-        //   child: TimePickerDialog(
-        //       initialTime: TimeOfDay.now(),
-        //       onEntryModeChanged: (value) {
-        //         print(value);
-        //         bookingAppointmentController.setSelectedTime(value.toString());
-        //       }),
-        // ),
-        MaterialButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          minWidth: MediaQuery.of(context).size.width * 0.8,
-          height: MediaQuery.of(context).size.height * 0.075,
-          color: Colors.grey.withOpacity(0.1),
-          child: Text("Next",
-              style: TextStyle(
-                fontSize: Theme.of(context).textTheme.titleSmall!.fontSize,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              )),
-        ),
-      ]),
+            ),
+            // Expanded(
+            //   child: TimePickerDialog(
+            //       initialTime: TimeOfDay.now(),
+            //       onEntryModeChanged: (value) {
+            //         print(value);
+            //         bookingAppointmentController.setSelectedTime(value.toString());
+            //       }),
+            // ),
+            Center(
+              child: MaterialButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                minWidth: MediaQuery.of(context).size.width * 0.8,
+                height: MediaQuery.of(context).size.height * 0.075,
+                color: Colors.grey.withOpacity(0.1),
+                child: Text("Next",
+                    style: TextStyle(
+                      fontSize:
+                          Theme.of(context).textTheme.titleMedium!.fontSize,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    )),
+              ),
+            ),
+          ]),
     );
   }
 }
