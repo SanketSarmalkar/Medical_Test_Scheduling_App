@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart ';
+import 'package:health_checkup_store/controllers/my_cart_controller.dart';
+import 'package:get/get.dart';
+import 'package:health_checkup_store/models/popular_lab_test_model.dart';
 
 class PopularLabTestCard extends StatefulWidget {
   final String testName;
@@ -18,6 +21,8 @@ class PopularLabTestCard extends StatefulWidget {
 }
 
 class _PopularLabTestCardState extends State<PopularLabTestCard> {
+  MyCartController myCartController = Get.put(MyCartController());
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -152,7 +157,18 @@ class _PopularLabTestCardState extends State<PopularLabTestCard> {
                         minWidth:
                             Theme.of(context).textTheme.bodyLarge!.fontSize! *
                                 10,
-                        onPressed: () {},
+                        onPressed: () {
+                          myCartController.addToCart(
+                            PopularLabTestModel(
+                              testName: widget.testName,
+                              testQuantity: widget.testQuantity,
+                              testActualPrice: widget.testActualPrice,
+                              testDiscountedPrice: widget.testDiscountedPrice,
+                            ),
+                          );
+                          print(
+                              "myCartController.myCartList.length: ${myCartController.myCartList.length}");
+                        },
                         child: const Text("Add to Cart"),
                       ),
                       MaterialButton(

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:health_checkup_store/components/cart_order_item.dart';
+import 'package:health_checkup_store/controllers/my_cart_controller.dart';
 
 class CartOrders extends StatefulWidget {
   const CartOrders({super.key});
@@ -8,10 +11,26 @@ class CartOrders extends StatefulWidget {
 }
 
 class CartOrdersState extends State<CartOrders> {
+  MyCartController myCartController = Get.put(MyCartController());
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 400,
+    return Obx(
+      () => SizedBox(
+        height: 400,
+        child: (myCartController.myCartList.isNotEmpty)
+            ? ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: myCartController.myCartList.length,
+                itemBuilder: (context, item) {
+                  return CartOrderItem(
+                    test: myCartController.myCartList[item],
+                  );
+                })
+            : const Center(
+                child: Text("No items in cart"),
+              ),
+      ),
     );
   }
 }

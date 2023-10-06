@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:health_checkup_store/components/calender_widget.dart';
 import 'package:health_checkup_store/components/cart_orders.dart';
+import 'package:health_checkup_store/controllers/my_cart_controller.dart';
 
 class MyCartPage extends StatefulWidget {
   const MyCartPage({super.key});
@@ -10,9 +12,11 @@ class MyCartPage extends StatefulWidget {
 }
 
 class _MyCartPageState extends State<MyCartPage> {
+  MyCartController myCartController = Get.put(MyCartController());
+
   @override
   Widget build(BuildContext context) {
-    TextStyle _textStyle1 = TextStyle(
+    TextStyle textStyle1 = TextStyle(
       fontSize: Theme.of(context).textTheme.titleSmall!.fontSize,
       fontWeight: FontWeight.bold,
       color: Colors.black.withOpacity(0.5),
@@ -101,79 +105,120 @@ class _MyCartPageState extends State<MyCartPage> {
                   ),
                 ),
               ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color(0xff10217D).withOpacity(0.1),
+              Obx(
+                () => Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: const Color(0xff10217D).withOpacity(0.1),
+                    ),
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                margin: EdgeInsets.all(
-                    Theme.of(context).textTheme.bodyLarge!.fontSize! * 0.1),
-                padding: EdgeInsets.all(
-                    Theme.of(context).textTheme.bodyLarge!.fontSize! * 1),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(
-                            top: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge!
-                                    .fontSize! *
-                                0.5,
-                            bottom: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge!
-                                    .fontSize! *
-                                0.5),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "M.R.P. Total",
-                              style: _textStyle1,
-                            ),
-                            Text("₹ ${0.00}", style: _textStyle1),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            top: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge!
-                                    .fontSize! *
-                                0.5,
-                            bottom: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge!
-                                    .fontSize! *
-                                0.5),
-                        child: Row(
+                  margin: EdgeInsets.all(
+                      Theme.of(context).textTheme.bodyLarge!.fontSize! * 0.1),
+                  padding: EdgeInsets.all(
+                      Theme.of(context).textTheme.bodyLarge!.fontSize! * 1),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                              top: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .fontSize! *
+                                  0.5,
+                              bottom: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .fontSize! *
+                                  0.5),
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Discount", style: _textStyle1),
-                              Text("₹ ${0.00}", style: _textStyle1),
-                            ]),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            top: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge!
-                                    .fontSize! *
-                                1,
-                            bottom: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge!
-                                    .fontSize! *
-                                2),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Amount to be Paid",
+                              Text(
+                                "M.R.P. Total",
+                                style: textStyle1,
+                              ),
+                              Text("₹ ${myCartController.totalMRP}",
+                                  style: textStyle1),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              top: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .fontSize! *
+                                  0.5,
+                              bottom: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .fontSize! *
+                                  0.5),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Discount", style: textStyle1),
+                                Text("₹ ${myCartController.totalDiscount}",
+                                    style: textStyle1),
+                              ]),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              top: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .fontSize! *
+                                  1,
+                              bottom: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .fontSize! *
+                                  2),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Amount to be Paid",
+                                  style: TextStyle(
+                                    fontSize: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .fontSize,
+                                    fontWeight: FontWeight.bold,
+                                    color: const Color(0xff10217D),
+                                  )),
+                              Text("₹ ${myCartController.totalPrice}/-",
+                                  style: TextStyle(
+                                    fontSize: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium!
+                                        .fontSize,
+                                    fontWeight: FontWeight.bold,
+                                    color: const Color(0xff10217D),
+                                  )),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.5,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Total Savings",
+                                style: TextStyle(
+                                  fontSize: Theme.of(context)
+                                      .textTheme
+                                      .titleSmall!
+                                      .fontSize,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              Text(
+                                "₹ ${myCartController.totalDiscount}/-",
                                 style: TextStyle(
                                   fontSize: Theme.of(context)
                                       .textTheme
@@ -181,50 +226,13 @@ class _MyCartPageState extends State<MyCartPage> {
                                       .fontSize,
                                   fontWeight: FontWeight.bold,
                                   color: const Color(0xff10217D),
-                                )),
-                            Text("₹ ${0.00}/-",
-                                style: TextStyle(
-                                  fontSize: Theme.of(context)
-                                      .textTheme
-                                      .titleMedium!
-                                      .fontSize,
-                                  fontWeight: FontWeight.bold,
-                                  color: const Color(0xff10217D),
-                                )),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Total Savings",
-                              style: TextStyle(
-                                fontSize: Theme.of(context)
-                                    .textTheme
-                                    .titleSmall!
-                                    .fontSize,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey,
+                                ),
                               ),
-                            ),
-                            Text(
-                              "₹ ${0.00}/-",
-                              style: TextStyle(
-                                fontSize: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .fontSize,
-                                fontWeight: FontWeight.bold,
-                                color: const Color(0xff10217D),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ]),
+                            ],
+                          ),
+                        )
+                      ]),
+                ),
               ),
               Container(
                 margin: EdgeInsets.only(
@@ -263,7 +271,7 @@ class _MyCartPageState extends State<MyCartPage> {
                                   )),
                               Text(
                                   "Reports will be delivered within 3-4 working days. Hard copy charges are non-refundable once the reports have been dispatched. ₹150 per person",
-                                  style: _textStyle1),
+                                  style: textStyle1),
                             ],
                           ),
                         )
