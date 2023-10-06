@@ -81,10 +81,16 @@ class _PopularLabTestCardState extends State<PopularLabTestCard> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Includes ${widget.testQuantity} tests"),
-                        Image.asset(
-                          "assets/images/popularLabTestLogo.png",
-                          scale: 0.8,
+                        Expanded(
+                          flex: 4,
+                          child: Text("Includes ${widget.testQuantity} tests"),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Image.asset(
+                            "assets/images/popularLabTestLogo.png",
+                            scale: 0.8,
+                          ),
                         )
                       ],
                     ),
