@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:health_checkup_store/controllers/booking_appointment_controller.dart';
+import 'package:health_checkup_store/data/scheduling_time_data.dart';
 
 class CalenderWidget extends StatefulWidget {
   const CalenderWidget({super.key});
@@ -8,6 +11,10 @@ class CalenderWidget extends StatefulWidget {
 }
 
 class _CalenderWidgetState extends State<CalenderWidget> {
+  BookingAppointmentController bookingAppointmentController =
+      Get.put(BookingAppointmentController());
+  SchedulingTimeData schedulingTimeData = SchedulingTimeData();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +43,9 @@ class _CalenderWidgetState extends State<CalenderWidget> {
               initialDate: DateTime.now(),
               firstDate: DateTime.now(),
               lastDate: DateTime(2025),
-              onDateChanged: (DateTime) {}),
+              onDateChanged: (value) {
+                bookingAppointmentController.setSelectedDate(value.toString());
+              }),
         ),
         Text("Select Time",
             style: TextStyle(
@@ -44,12 +53,57 @@ class _CalenderWidgetState extends State<CalenderWidget> {
               fontWeight: FontWeight.bold,
               color: Colors.black,
             )),
-        Expanded(
-          child: TimePickerDialog(
-              initialTime: TimeOfDay.now(), onEntryModeChanged: (TimeOfDay) {}),
+        SizedBox(
+          height: 200,
+          child: ListView.builder(
+              itemCount: schedulingTimeData.TimeSlot.length,
+              itemBuilder: (context, index) {
+                return Row(
+                  children: List.generate(3, (colIndex) {
+                    final slotIndex = index * 3 + colIndex;
+                    if (slotIndex < schedulingTimeData.TimeSlot.length) {
+                      return Expanded(
+                        child: Obx(
+                          () => MaterialButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              side: const BorderSide(
+                                color: Color(0xff10217D),
+                              ),
+                            ),
+                            color: bookingAppointmentController
+                                        .selectedTime.value ==
+                                    schedulingTimeData.TimeSlot[slotIndex]
+                                ? const Color(0xff10217D)
+                                : Colors.white,
+                            child: Text(schedulingTimeData.TimeSlot[slotIndex]),
+                            onPressed: () {
+                              bookingAppointmentController.setSelectedTime(
+                                  schedulingTimeData.TimeSlot[slotIndex]);
+                            },
+                          ),
+                        ),
+                      );
+                    } else {
+                      // Placeholder for empty slots if the total slots are not a multiple of 3
+                      return Expanded(child: Container());
+                    }
+                  }),
+                );
+              }),
         ),
+        // Expanded(
+        //   child: TimePickerDialog(
+        //       initialTime: TimeOfDay.now(),
+        //       onEntryModeChanged: (value) {
+        //         print(value);
+        //         bookingAppointmentController.setSelectedTime(value.toString());
+        //       }),
+        // ),
         MaterialButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),

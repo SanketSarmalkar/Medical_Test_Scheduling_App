@@ -112,7 +112,7 @@ class _CartOrderItemState extends State<CartOrderItem> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.3,
+                    //width: MediaQuery.of(context).size.width * 0.3,
                     child: MaterialButton(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(100),
@@ -136,6 +136,9 @@ class _CartOrderItemState extends State<CartOrderItem> {
                                     .fontSize! *
                                 1.5,
                           ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.01,
+                          ),
                           Text(
                             "Remove",
                             style: TextStyle(
@@ -144,7 +147,7 @@ class _CartOrderItemState extends State<CartOrderItem> {
                                   .titleSmall!
                                   .fontSize,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xff10217D),
+                              color: const Color(0xff10217D),
                             ),
                           ),
                         ],
@@ -157,7 +160,7 @@ class _CartOrderItemState extends State<CartOrderItem> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.6,
+                    //width: MediaQuery.of(context).size.width * 0.7,
                     child: MaterialButton(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(100),
@@ -178,6 +181,9 @@ class _CartOrderItemState extends State<CartOrderItem> {
                                     .titleSmall!
                                     .fontSize! *
                                 1.5,
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.01,
                           ),
                           Text(
                             "Upload prescription (optional)",

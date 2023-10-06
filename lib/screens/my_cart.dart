@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:health_checkup_store/components/calender_widget.dart';
 import 'package:health_checkup_store/components/cart_orders.dart';
+import 'package:health_checkup_store/controllers/booking_appointment_controller.dart';
 import 'package:health_checkup_store/controllers/my_cart_controller.dart';
 
 class MyCartPage extends StatefulWidget {
@@ -13,6 +14,8 @@ class MyCartPage extends StatefulWidget {
 
 class _MyCartPageState extends State<MyCartPage> {
   MyCartController myCartController = Get.put(MyCartController());
+  BookingAppointmentController bookingAppointmentController =
+      Get.put(BookingAppointmentController());
 
   @override
   Widget build(BuildContext context) {
@@ -45,63 +48,69 @@ class _MyCartPageState extends State<MyCartPage> {
                 ),
               ),
               const CartOrders(),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const CalenderWidget(),
-                      ));
-                },
-                child: Container(
-                  margin: EdgeInsets.all(
-                      Theme.of(context).textTheme.bodyLarge!.fontSize! * 0.5),
-                  padding: EdgeInsets.only(
-                    top: Theme.of(context).textTheme.bodyLarge!.fontSize! * 1.6,
-                    bottom:
-                        Theme.of(context).textTheme.bodyLarge!.fontSize! * 1.6,
-                    left:
-                        Theme.of(context).textTheme.bodyLarge!.fontSize! * 0.1,
-                    right:
-                        Theme.of(context).textTheme.bodyLarge!.fontSize! * 0.1,
-                  ),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: const Color(0xff10217D).withOpacity(0.1),
+              Obx(
+                () => GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CalenderWidget(),
+                        ));
+                  },
+                  child: Container(
+                    margin: EdgeInsets.all(
+                        Theme.of(context).textTheme.bodyLarge!.fontSize! * 0.5),
+                    padding: EdgeInsets.only(
+                      top: Theme.of(context).textTheme.bodyLarge!.fontSize! *
+                          1.6,
+                      bottom: Theme.of(context).textTheme.bodyLarge!.fontSize! *
+                          1.6,
+                      left: Theme.of(context).textTheme.bodyLarge!.fontSize! *
+                          0.1,
+                      right: Theme.of(context).textTheme.bodyLarge!.fontSize! *
+                          0.1,
                     ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.calendar_month,
-                        size:
-                            Theme.of(context).textTheme.titleSmall!.fontSize! *
-                                2.5,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color(0xff10217D).withOpacity(0.1),
                       ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.7,
-                        padding: EdgeInsets.all(
-                            Theme.of(context).textTheme.bodyLarge!.fontSize! *
-                                0.5),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: const Color(0xff10217D).withOpacity(0.2),
-                          ),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Text("Select Date",
-                            style: TextStyle(
-                              fontSize: Theme.of(context)
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Icon(
+                          Icons.calendar_month,
+                          size: Theme.of(context)
                                   .textTheme
                                   .titleSmall!
-                                  .fontSize,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey,
-                            )),
-                      ),
-                    ],
+                                  .fontSize! *
+                              2.5,
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.7,
+                          padding: EdgeInsets.all(
+                              Theme.of(context).textTheme.bodyLarge!.fontSize! *
+                                  0.5),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: const Color(0xff10217D).withOpacity(0.2),
+                            ),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Text(
+                              "${bookingAppointmentController.getSelectedDate()} (${bookingAppointmentController.getSelectedTime()})",
+                              style: TextStyle(
+                                fontSize: Theme.of(context)
+                                    .textTheme
+                                    .titleSmall!
+                                    .fontSize,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey,
+                              )),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
