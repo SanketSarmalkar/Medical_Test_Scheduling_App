@@ -29,7 +29,9 @@ The Health Checkup Store application is aimed at simplifying the process of sche
     Your browser does not support the video tag.
   </video> -->
 
-<iframe width="324" height="576" src="https://www.youtube.com/embed/5JWZiZLPmPY" title="Health Checkup Store Flutter App" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[<iframe width="324" height="576" src="https://www.youtube.com/embed/5JWZiZLPmPY" title="Health Checkup Store Flutter App" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>]
+
+[![Health Checkup Store Flutter App](https://img.youtube.com/vi/5JWZiZLPmPY/0.jpg)](https://www.youtube.com/watch?v=5JWZiZLPmPY)
 
 ## Getting Started
 
