@@ -68,12 +68,12 @@ class _CalenderWidgetState extends State<CalenderWidget> {
             SizedBox(
               height: 260,
               child: ListView.builder(
-                  itemCount: schedulingTimeData.TimeSlot.length,
+                  itemCount: schedulingTimeData.timeSlot.length,
                   itemBuilder: (context, index) {
                     return Row(
                       children: List.generate(3, (colIndex) {
                         final slotIndex = index * 3 + colIndex;
-                        if (slotIndex < schedulingTimeData.TimeSlot.length) {
+                        if (slotIndex < schedulingTimeData.timeSlot.length) {
                           return Expanded(
                             child: Obx(
                               () => Padding(
@@ -94,15 +94,15 @@ class _CalenderWidgetState extends State<CalenderWidget> {
                                   ),
                                   color: bookingAppointmentController
                                               .selectedTime.value ==
-                                          schedulingTimeData.TimeSlot[slotIndex]
+                                          schedulingTimeData.timeSlot[slotIndex]
                                       ? const Color(0xff10217D)
                                       : Colors.white,
                                   child: Text(
-                                      schedulingTimeData.TimeSlot[slotIndex]),
+                                      schedulingTimeData.timeSlot[slotIndex]),
                                   onPressed: () {
                                     bookingAppointmentController
                                         .setSelectedTime(schedulingTimeData
-                                            .TimeSlot[slotIndex]);
+                                            .timeSlot[slotIndex]);
                                   },
                                 ),
                               ),

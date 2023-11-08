@@ -1,5 +1,5 @@
 class SchedulingTimeData {
-  List<String> TimeSlot = [
+  List<String> timeSlot = [
     "09:00 AM",
     "08:00 AM",
     "10:00 AM",

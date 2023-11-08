@@ -24,10 +24,12 @@ The Health Checkup Store application is aimed at simplifying the process of sche
 
 # Screen Recording
 <!-- [![Autoplay Screen Recording Video](https://img.youtube.com/vi/9Q4Q6Z3Z4ZI/0.jpg)](./assets/videos/screen_recording.mp4) -->
-<video autoplay controls height="350">
+<!-- <video autoplay controls height="350">
     <source src="assets/videos/screen_recording.mp4" type="video/mp4">
     Your browser does not support the video tag.
-  </video>
+  </video> -->
+
+<iframe width="324" height="576" src="https://www.youtube.com/embed/5JWZiZLPmPY" title="Health Checkup Store Flutter App" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Getting Started
 

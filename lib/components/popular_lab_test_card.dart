@@ -166,8 +166,8 @@ class _PopularLabTestCardState extends State<PopularLabTestCard> {
                               testDiscountedPrice: widget.testDiscountedPrice,
                             ),
                           );
-                          print(
-                              "myCartController.myCartList.length: ${myCartController.myCartList.length}");
+                          // print(
+                          //     "myCartController.myCartList.length: ${myCartController.myCartList.length}");
                         },
                         child: const Text("Add to Cart"),
                       ),

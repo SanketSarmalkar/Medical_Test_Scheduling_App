@@ -17,6 +17,6 @@ class BookedAppointmentController extends GetxController {
     List<BookedAppointmentModel> bookedAppointmentModelList = myBox.get(1);
     bookedAppointmentModelList.add(bookedAppointmentModel);
     myBox.put(1, bookedAppointmentModelList);
-    print(myBox.get(1));
+    // print(myBox.get(1));
   }
 }
